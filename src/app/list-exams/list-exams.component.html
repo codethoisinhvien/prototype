@@ -1,0 +1,40 @@
+<div class="row">
+  <div *ngFor ="let x of exams"class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{x.name}} </h4>
+        <div class="template-demo">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th class="pl-0"></th>
+                <th class="text-right"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="pl-0">SỐ bài thi hiện có</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary"><i class="mdi mdi-account"></i></div></td>
+              </tr>
+              <tr>
+                <td class="pl-0">Số bài thi đã thi</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div></td>
+              </tr>
+              <tr>
+               <a *ngIf="role>=2"href="mod/exams/{{x.id}}"><button class="btn btn-primary" type="button">Sửa</button></a>
+               <a *ngIf="role>=2"><button class="btn btn-primary" type="button" (click)="delete(x)">Xóa</button></a>
+               <a *ngIf="role==1"href="/exams/{{x.id}}?JSON.stringfy(x)"><button class="btn btn-primary" type="button">Chọn</button></a>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-sm-8 grid-margin stretch-card">
+      
+          <ngb-pagination [collectionSize]="40" [pageSize]="10" [page]="1" aria-label="Default pagination" class="pagination-separated pagination-danger"></ngb-pagination>
+   
+    </div>
+  </div>

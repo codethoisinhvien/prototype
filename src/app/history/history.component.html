@@ -1,0 +1,38 @@
+<app-card [title]="'Basic table'" [classHeader]="true" [blockClass]="'table-border-style'">
+  <span class="code-header">use class <code>table</code> inside table element</span>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Stt</th>
+        <th>Môn học</th>
+        <th>Tên bài thi</th>
+        <th>Thời gian làm</th>
+        <th>Thời gian nộp bài thi</th>
+        <th>Điểm</th>
+        <th>Ngày làm bài</th>
+        <th>Chi tiết</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of history;let i = index">
+        <th>{{i+1}}</th>
+        <th>{{item.exam.subject.name}}</th>
+        <th>{{item.exam.name}}</th>
+        <th>{{item.exam.timedo}} phút</th>
+        <th>{{item.createdAt.toLocaleString()}}</th>
+        <th>{{item.score}}</th>
+        
+        <th>{{item.expiresIn.getMinutes()}} phút</th>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+     
+      </tbody>
+    </table>
+  </div>
+</app-card>

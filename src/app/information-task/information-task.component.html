@@ -1,0 +1,99 @@
+<div>
+  <div class="row" style="background:white">
+    <div class="col-8">
+      <div class="row">
+
+        <h2 style="float: right;">Mã đề Se-21</h2>
+
+      </div>
+      <div class='row' *ngFor="let x of exam.exam.questions; let i = index" style="margin: 3px">
+        <div class="qItem" id="questionRegionItem_6022">
+          <h4 class="qItem-QTitle">
+            <strong>Câu hỏi số {{i+1}}</strong>
+
+          </h4>
+          <div class="qItem-Content">
+            <p>{{x.content}} </p>
+          </div>
+          <div>
+              <p *ngIf="!x.tasks.length" style="color: red"> Chưa có câu trả lời </p>
+          </div>
+          <div class="qItem-Answer">
+            <input type="hidden" id="hidden_6022" name="hidden_6022" class="hiddenQIDCSS" data-id="6022" value="B">
+            <ul class="qItem-Answer-ul">
+              <li *ngFor="let y of x.answers" (click)="updateAnswer(x.id,y.id)">
+                <div class="checkbox checkbox-success checkbox-inline">
+                  <i *ngIf=" y.question_answer.right;else wrong " class="icofont icofont-check-circled"></i>
+                  <ng-template #wrong> <i class="icofont icofont-not-allowed"></i></ng-template>
+                  <ng-template #wrong> <i  *ngIf="x.tasks.length&&x.tasks[0].taskExamQuestion.answer_id==y.id;else choose"class="icofont icofont-not-allowed"></i></ng-template>
+                  <ng-template #choose> <input type="checkbox" disabled></ng-template>
+
+                  <label for="q_6022A">
+
+                    <p>{{y.content}}</p>
+
+                  </label>
+                </div>
+              </li>
+
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">SE-21</h4>
+          <div class="template-demo">
+            <div class="row">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th class="pl-0"></th>
+                    <th class="text-right"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pl-0">Thời gian thi </td>
+                    <td class="pr-0 text-right">
+                      <div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row">
+              <div *ngFor='let x of questions' class="col-4 grid-margin stretch-card">
+
+
+
+                <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
+
+
+
+              </div>
+
+
+            </div>
+            <div class="row grid-margin stretch-card">
+              <div class="col-4">
+              </div>
+              <div class="col-4">
+                <button type="button" (click)='onSubmit()' class="btn btn-inverse-primary btn-rounded"> Nộp bài</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
