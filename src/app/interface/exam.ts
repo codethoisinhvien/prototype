@@ -10,10 +10,12 @@ export interface Exam{
 export interface Answer{
     id?:number
     content?:string
+    right?:boolean
 }
 export interface Question{
     id?:number
     content?:string
     answers?:Answer[]
+    subject_id?:number
 } 
 

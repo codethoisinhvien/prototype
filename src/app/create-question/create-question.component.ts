@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Exam } from '../interface/exam';
-import { Http } from '@angular/http';
+import { Exam, Question } from '../interface/exam';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionComponent } from '../question/question.component';
+import { AccessToken } from '../interface/Login';
+import { ListQuestionComponent } from '../list-question/list-question.component';
 
 @Component({
   selector: 'app-create-question',
@@ -12,58 +14,124 @@ import { QuestionComponent } from '../question/question.component';
   styleUrls: ['./create-question.component.css']
 })
 export class CreateQuestionComponent implements OnInit {
-  exam:Exam
-  
-  constructor(private http:Http,private router:ActivatedRoute,private modalService: NgbModal) {
-    this.exam={
+  exam: Exam
+  modalRef: any
+  constructor(private http: Http, private router: ActivatedRoute, private modalService: NgbModal) {
+    this.exam = {
 
-      questions:[]}
+      questions: []
+    }
     this.loadData()
-   }
+  }
 
   ngOnInit() {
-   
-  }
- async loadData(){
-  this.router.params.subscribe(params => {
-   this.exam.id=params['id']
-   this.http.get(`api/exams/${this.exam.id}`).subscribe(res=>{
-    let val = res.json();
-    console.log(res)
-    if(val.success){
-      this.exam= val.exam
-    }
 
-  })
-  })
-  
- }
-addQuestion(){
-  let a ={
-    content:"",
-    answers:[]
   }
- this.exam.questions.push(a)
-  
-}
-addAnswer(i){
-  let b ={
-    content:"",
+   loadData() {
+    this.router.params.subscribe(params => {
+      this.exam.id = params['id']
+      let access_token: AccessToken = {}
+      access_token = JSON.parse(localStorage.getItem('user'))
+      let myheaders: Headers = new Headers()
+      myheaders.append('Authorization', access_token.access_token)
+      let options = new RequestOptions({ headers: myheaders })
+      this.http.get(`api/exams/${this.exam.id}`, options).subscribe(res => {
+        let val = res.json();
+        console.log(res)
+        if (val.success) {
+          this.exam = val.exam
+        
+          
+          
+           
+        }
+
+      })
+    })
+
   }
-  this.exam.questions[i].answers.push(b)
-  console.log(this.exam.questions)
-}
-open() {
-  const modalRef = this.modalService.open(QuestionComponent);
- // modalRef.componentInstance.name = 1;
-  modalRef.componentInstance.passEntry.subscribe(($e)=>{
-    console.log($e);   
+  addQuestion() {
+    let a = {
+      content: "",
+      answers: []
+    }
+    this.exam.questions.push(a)
+
+  }
+  updateQuestion(i) {
+
+    this.modalRef = this.modalService.open(QuestionComponent);
+    this.modalRef.componentInstance.question = this.exam.questions[i]
+    this.modalRef.componentInstance.passEntry.subscribe(($e) => {
+    
+      let question: Question = {};
+      question = $e
+      question.subject_id = this.exam.subject_id
+      
+     this.http.put(`api/questions/${question.id}`,question).subscribe(res=>{
+      let val = res.json()
+      if (val.success == true) {
+  
+    
+        this.loadData()
+      }
+     })
+    
+    console.log($e)
+    })
+
 
     
-    this.exam.questions.push($e)
-})
+  }
+  open() {
+    this.modalRef = this.modalService.open(QuestionComponent);
+    // modalRef.componentInstance.name = 1;
+    this.modalRef.componentInstance.passEntry.subscribe(($e) => {
+    
+      let question: Question = {};
+      question = $e
+      question.subject_id = this.exam.subject_id
+      if(question.id==undefined){
+      this.http.post(`api/questions`, question).subscribe(res => {
+        console.log(res)
+        let val = res.json();
+        if (val.success == true) {
+          let question_id = val.question.id
+          question.id = question_id
+          this.http.put(`api/exams/${this.exam.id}?action=add`, { question_id, score: 1 }).subscribe(res => {
+            let val = res.json()
+            if (val.success == true) {
 
-  
-}
+              this.loadData()
+            }
+          })
+        }
+      })
+    }
+    console.log($e)
+    })
 
+
+  }
+  deleteQuestion(i){
+    let question_id = this.exam.questions[i].id
+          
+          this.http.put(`api/exams/${this.exam.id}?action=delete`, { question_id}).subscribe(res => {
+        let val = res.json()
+            if (val.success == true) {
+
+              this.loadData()
+            }
+          })
+
+  }
+  openBank(){
+    this.modalRef = this.modalService.open(ListQuestionComponent,{ size: 'lg' });
+    // modalRef.componentInstance.name = 1;
+    this.modalRef.componentInstance.exam = this.exam;
+    this.modalRef.componentInstance.passEntry.subscribe(($e)=>{
+      this.loadData()
+     
+    })
+  }
 }

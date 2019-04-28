@@ -8,14 +8,14 @@
 
       </div>
       <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
-        <div class="qItem" id="questionRegionItem_6022">
+        <div class="col-8" id="questionRegionItem_6022">
           <h4 class="qItem-QTitle">
             <strong>Câu hỏi số {{i+1}}</strong>
 
           </h4>
           <div class="row">
             <div class="qItem-Content col-8">
-              <input class="col-8" value="{{x.content}}" name="" />
+              <p>{{x.content}}</p>
 
             </div>
          
@@ -29,7 +29,9 @@
                 <div class="checkbox checkbox-success checkbox-inline col-12 row">
                   <div class="row">
                       <div class="col-2">
-                          <input type="radio" />
+                         
+                          <input *ngIf="y.question_answer!=nulL&&y.question_answer.right==true"type="checkbox"  checked />
+                          <input *ngIf="y.question_answer!=null&&!y.question_answer.right"type="checkbox"  disabled/>
                         </div>
                     <div class="col-8">
                       <p>{{y.content}}</p>
@@ -46,6 +48,11 @@
             </ul>
           </div>
         </div>
+        <div class="col-4">
+            <button type="button" (click)='deleteQuestion(i)' class="btn btn-inverse-primary btn-rounded">Xóa</button>
+          <button type="button" (click)='updateQuestion(i)' class="btn btn-inverse-primary btn-rounded"> Sửa </button>
+        </div>
+       
       </div>
 
     </div>
@@ -93,6 +100,7 @@
               </div>
               <div class="col-4">
                 <button type="button" (click)='open()' class="btn btn-inverse-primary btn-rounded"> Them cau hoi</button>
+                <button type="button" (click)='openBank()' class="btn btn-inverse-primary btn-rounded"> Them cau hoi tu ngan hang cau hoi</button>
               </div>
             </div>
 

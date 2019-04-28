@@ -24,6 +24,7 @@ import { InformationTaskComponent } from './information-task/information-task.co
 import { CreatExamComponent } from './creat-exam/creat-exam.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { QuestionComponent } from './question/question.component';
+import { ListQuestionComponent } from './list-question/list-question.component';
 
 
 
@@ -44,6 +45,7 @@ import { QuestionComponent } from './question/question.component';
     CreatExamComponent,
     CreateQuestionComponent,
     QuestionComponent,
+    ListQuestionComponent,
     
    
   ],
@@ -61,6 +63,6 @@ import { QuestionComponent } from './question/question.component';
       { provide: LocationStrategy, useClass: PathLocationStrategy }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[CreatExamComponent,QuestionComponent]
+  entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent]
 })
 export class AppModule {}

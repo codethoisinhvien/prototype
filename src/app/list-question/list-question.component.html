@@ -1,0 +1,60 @@
+<app-card [title]="'Contextual classes'" [classHeader]="true" [blockClass]="'table-border-style'">
+  <span class="code-header">For Make row Contextual add Contextual class like <code>.table-success</code> in <code> tr tag</code>
+    and For cell add Contextual class in <code> td or th tag</code> . </span>
+  <div class="row" style="margin: 1%">
+
+
+
+
+    <div class="table-responsive col-6">
+      <table class="table-border-style ">
+        <thead>
+          <tr>
+
+            <th class="col-6"></th>
+            <th class="col-3">Câu hỏi</th>
+
+          </tr>
+        </thead>
+        <tbody  >
+          <tr *ngFor="let item of listQuestion;let i= index">
+            <td><button (click)= "addQuestion(item.id,i)">Thêm</button></td>
+            <td>
+              <p>{{item.content}}</p>
+            </td>
+            
+          </tr>
+
+        </tbody>
+      </table>
+      <ngb-pagination [collectionSize]="70" [(page)]="page" [directionLinks]="false"></ngb-pagination>
+    </div>
+    
+    <div class="table-responsive col-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+
+            <td class="col-3"></td>
+            <td class="col-6">Câu hỏi</td>
+            <td class="col-3">Điểm</td>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of exam.questions">
+            <td><button>Remote</button></td>
+            <td>
+              <p>{{item.content}}</p>
+            </td>
+            <td><input type="number" name="sdas" /></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</app-card>
