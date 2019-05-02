@@ -43,8 +43,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of exam.questions">
-            <td><button>Remote</button></td>
+          <tr *ngFor="let item of exam.questions;let j =index">
+            <td><button  (click)="deleteQuestion(j)">Remote</button></td>
             <td>
               <p>{{item.content}}</p>
             </td>

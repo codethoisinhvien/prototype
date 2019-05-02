@@ -36,5 +36,16 @@ this.loadData()
       }
     })
   }
+  deleteQuestion(i){
+    let question_id = this.exam.questions[i].id
+          
+          this.http.put(`api/exams/${this.exam.id}?action=delete`, { question_id}).subscribe(res => {
+        let val = res.json()
+            if (val.success == true) {
+
+              this.exam.questions.splice(i,1)
+            }
+          })
+  }
 
 }
