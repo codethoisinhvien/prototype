@@ -1,0 +1,39 @@
+<app-card [title]="'Inverse table'" [classHeader]="true" [blockClass]="'table-border-style'">
+    <span class="code-header">use class <code>table-inverse</code> inside table element</span>
+  <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>User name</th>
+          <th>Full name</th>
+          <th>Quyền hạn</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of users;let i =index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item.username}}</td>
+          <td>{{item.first_name}} {{item.last_name}}</td>
+          <td>
+            <select id="roles"  (change)="onChangeRole(item)" name="role" [(ngModel)]="item.role">
+              <option *ngIf="item.role==1 "value="1" selected="selected" >User</option>
+              <option *ngIf="item.role==2 "value="2" selected="selected" >Mod</option>
+              <option *ngIf="item.role==3 "value="3" selected="selected" >Admin</option>
+              <option *ngIf="item.role==0 "value="0" selected="selected" >Band</option>
+              <option *ngIf="item.role!=1 "value="1"  >User</option>
+              <option *ngIf="item.role!=2 "value="2" >Mod</option>
+              <option *ngIf="item.role!=3 "value="3" >Admin</option>
+              <option *ngIf="item.role!=0 "value="0" >Band</option>
+               </select > </td>
+              
+        
+        <button>Xem thông tin chi tiết</button>
+        <button (click)='createNotification()'>Tạo thông báo </button>
+          
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+</app-card>

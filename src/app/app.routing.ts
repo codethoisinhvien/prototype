@@ -10,6 +10,7 @@ import { StartExamComponent } from './start-exam/start-exam.component';
 import { HistoryComponent } from './history/history.component';
 import { InformationTaskComponent } from './information-task/information-task.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
+import { ListUserComponent } from './list-user/list-user.component';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -72,6 +73,10 @@ export const AppRoutes: Routes = [{
     {
       path: 'mod/exams/:id',
       component:CreateQuestionComponent
+    },
+    {
+      path: 'users',
+      component:ListUserComponent
     },
   ]
 }, {

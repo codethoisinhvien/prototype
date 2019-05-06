@@ -25,6 +25,9 @@ import { CreatExamComponent } from './creat-exam/creat-exam.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { QuestionComponent } from './question/question.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
+import { ListUserComponent } from './list-user/list-user.component';
+import { ListRoleComponent } from './list-role/list-role.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 
@@ -46,6 +49,9 @@ import { ListQuestionComponent } from './list-question/list-question.component';
     CreateQuestionComponent,
     QuestionComponent,
     ListQuestionComponent,
+    ListUserComponent,
+    ListRoleComponent,
+    NotificationComponent,
     
    
   ],
@@ -63,6 +69,6 @@ import { ListQuestionComponent } from './list-question/list-question.component';
       { provide: LocationStrategy, useClass: PathLocationStrategy }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent]
+  entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent,NotificationComponent]
 })
 export class AppModule {}

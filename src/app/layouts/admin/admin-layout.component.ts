@@ -4,6 +4,7 @@ import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/a
 
 import { MenuItems } from '../../shared/menu-items/menu-items';
 import { AccessToken } from '../../interface/Login';
+import { Http, RequestOptions, Headers } from '@angular/http';
 
 export interface Options {
   heading?: string;
@@ -48,7 +49,7 @@ export class AdminLayoutComponent implements OnInit {
 
   public htmlButton: string;
   user :AccessToken
-  constructor(public menuItems: MenuItems) {
+  constructor(public menuItems: MenuItems,private http:Http) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
@@ -63,6 +64,7 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.user= JSON.parse(localStorage.getItem('user'))
+    this. getNotification()
   }
 
   onClickedOutside(e: Event) {
@@ -122,5 +124,16 @@ export class AdminLayoutComponent implements OnInit {
   }
   logout(){
     localStorage.removeItem('user')
+  }
+  getNotification(){
+    let access_token: AccessToken = {}
+access_token = JSON.parse(localStorage.getItem('user'))
+let myheaders: Headers = new Headers()
+myheaders.append('Authorization', access_token.access_token)
+let options = new RequestOptions({ headers: myheaders })
+    this.http.get(`api/notifications`,options).subscribe(res=>{
+      console.log(res)
+      
+    })
   }
 }
