@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 
 import {AdminLayoutComponent} from './layouts/admin/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
-import { RegisterComponent } from './register/register.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { ListSubjectComponent } from './list-subject/list-subject.component';
 import { ListExamsComponent } from './list-exams/list-exams.component';
@@ -11,10 +11,14 @@ import { HistoryComponent } from './history/history.component';
 import { InformationTaskComponent } from './information-task/information-task.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { AuthGuardService } from './service/auth-guard.service';
+import { LoginServiceService } from './service/login-service.service';
+import { AdminServiceService } from './service/admin-service.service';
 
 export const AppRoutes: Routes = [{
   path: '',
   component: AdminLayoutComponent,
+  canActivateChild: [AuthGuardService],
   children: [
     {
       path: '',
@@ -42,10 +46,7 @@ export const AppRoutes: Routes = [{
       path: 'simple-page',
       loadChildren: './simple-page/simple-page.module#SimplePageModule'
     },
-    {
-      path: 'register',
-      component:RegisterComponent
-    },
+    
     {
       path: 'profile',
       component:ProfileComponent
@@ -76,15 +77,17 @@ export const AppRoutes: Routes = [{
     },
     {
       path: 'users',
+      canActivate:[AdminServiceService],
       component:ListUserComponent
     },
   ]
 }, {
   path: '',
   component: AuthLayoutComponent,
+  canActivateChild:[LoginServiceService],
   children: [
     {
-      path: 'authentication',
+      path: '',
       loadChildren: './authentication/authentication.module#AuthenticationModule'
     }
     

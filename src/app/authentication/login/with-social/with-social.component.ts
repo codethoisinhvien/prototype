@@ -23,7 +23,7 @@ export class WithSocialComponent implements OnInit {
    if(val.success==true){
      localStorage.setItem('user',JSON.stringify(val));
       
-     confirm('Thành công')
+    
    }else{
      confirm(val.message)
    }

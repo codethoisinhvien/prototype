@@ -14,7 +14,6 @@ import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.co
 import { TitleComponent } from './layouts/admin/title/title.component';
 import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListSubjectComponent } from './list-subject/list-subject.component';
 import { ListExamsComponent } from './list-exams/list-exams.component';
@@ -28,6 +27,11 @@ import { ListQuestionComponent } from './list-question/list-question.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { ListRoleComponent } from './list-role/list-role.component';
 import { NotificationComponent } from './notification/notification.component';
+import { AuthGuardService } from './service/auth-guard.service';
+import { LoginServiceService } from './service/login-service.service';
+import { ShareServiceService } from './service/share-service.service';
+import { AdminServiceService } from './service/admin-service.service';
+import { ExamService } from './service/exam.service';
 
 
 
@@ -38,7 +42,7 @@ import { NotificationComponent } from './notification/notification.component';
     AuthLayoutComponent,
     BreadcrumbsComponent,
     TitleComponent,
-    RegisterComponent,
+  
     ProfileComponent,
     ListSubjectComponent,
     ListExamsComponent,
@@ -62,11 +66,17 @@ import { NotificationComponent } from './notification/notification.component';
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpModule,
-    ScrollModule
+    ScrollModule,
+    
   ],
   exports: [ScrollModule],
   providers: [
-      { provide: LocationStrategy, useClass: PathLocationStrategy }
+      { provide: LocationStrategy, useClass: PathLocationStrategy },
+      AuthGuardService,
+      LoginServiceService,
+      ShareServiceService,
+      AdminServiceService,
+      ExamService
   ],
   bootstrap: [AppComponent],
   entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent,NotificationComponent]

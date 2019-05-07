@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { AccessToken } from '../interface/Login';
 import { Exam } from '../interface/exam';
+import { ExamService } from '../service/exam.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Exam } from '../interface/exam';
 export class StartExamComponent implements OnInit {
   show: boolean
   exam: Exam
-  constructor(private http: Http) {
+  constructor(private http: Http,private examService:ExamService) {
     this.show = false
 
   }
@@ -20,31 +21,21 @@ export class StartExamComponent implements OnInit {
   ngOnInit() {
   }
   start() {
-    let access_token: AccessToken = {}
-    access_token = JSON.parse(localStorage.getItem('user'))
-    let myheaders: Headers = new Headers()
-    myheaders.append('Authorization', access_token.access_token)
-    let options = new RequestOptions({ headers: myheaders })
-    let data = {
-      exam_id: 1
-    }
+ 
+this.examService.getExam(1).then(val=>{
+  if (val.success == true) {
+    this.exam = val.data.exam
+    this.exam.task_id =val.data.task_id
+    console.log(this.exam)
 
-    this.http.post('/api/tasks', data, options).subscribe(res => {
-      let val = res.json()
-      if (val.success == true) {
-        this.exam = val.data.exam
-        this.exam.task_id =val.data.task_id
-        console.log(this.exam)
-
-        this.show = true
-      }
-//larman
-
-    });
+    this.show = true
+}
+})
+    
 
 
   }
-  updateAnswer(question_id,answer_id){
+  updateAnswer(question_id,answer_id,stask_id){
     console.log(question_id,answer_id)
     let url ='/api/tasks/'+this.exam.task_id
     this.http.put(url,{question_id,answer_id}).subscribe(res=>{

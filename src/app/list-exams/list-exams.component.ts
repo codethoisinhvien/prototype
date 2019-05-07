@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Exam } from '../interface/exam';
+import { ExamService } from '../service/exam.service';
 
 @Component({
   selector: 'app-list-exams',
@@ -10,26 +11,25 @@ import { Exam } from '../interface/exam';
 export class ListExamsComponent implements OnInit {
    exams:Exam[]
    role:number
-  constructor(private http:Http) {
+  constructor(private http:Http,private examService:ExamService) {
     this.exams=[]
+    this.role=JSON.parse(localStorage.getItem('user')).role
    }
 
   ngOnInit() {
     this.loadData()
   }
   loadData(){
-    this.http.get('api/subjects/1').subscribe(res=>{
-      console.log(res)
-      this.role = JSON.parse(localStorage.getItem('user')).role
-      let val = res.json()
+    this.examService.getListEXam(1).then(val=>{
+       
       if(val.success==true){
         this.exams=val.data
       }
     })
+     
   }
   delete(x:any){
-    confirm(`Bạn chắc chắn xóa bài thi ${x.name} chứ ?`)
-    this.http.delete(`api/exams/${x.id}`).subscribe(res=>{
+    this.examService.deleteExam(x).then(res=>{
       console.log(res)
     })
   }

@@ -5,6 +5,7 @@ import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/a
 import { MenuItems } from '../../shared/menu-items/menu-items';
 import { AccessToken } from '../../interface/Login';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 
 export interface Options {
   heading?: string;
@@ -46,10 +47,11 @@ export class AdminLayoutComponent implements OnInit {
   isCollapsedSideBar = 'no-block';
   toggleOn = true;
   windowWidth: number;
+  notifications:Notification[]=[]
 
   public htmlButton: string;
   user :AccessToken
-  constructor(public menuItems: MenuItems,private http:Http) {
+  constructor(public menuItems: MenuItems,private http:Http,private router:Router) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
@@ -59,12 +61,12 @@ export class AdminLayoutComponent implements OnInit {
     this.htmlButton += '<a href="https://codedthemes.com/item/mash-able-pro-admin-template/" class="btn btn-primary" aria-hidden="true">';
     this.htmlButton += 'Upgrade To Pro</a>';
     this.htmlButton += '</div>';
-
+    this. getNotification()
   }
 
   ngOnInit() {
     this.user= JSON.parse(localStorage.getItem('user'))
-    this. getNotification()
+   
   }
 
   onClickedOutside(e: Event) {
@@ -124,15 +126,20 @@ export class AdminLayoutComponent implements OnInit {
   }
   logout(){
     localStorage.removeItem('user')
+    this.router.navigate(["/login"]);
   }
   getNotification(){
-    let access_token: AccessToken = {}
+  let access_token: AccessToken = {}  
 access_token = JSON.parse(localStorage.getItem('user'))
 let myheaders: Headers = new Headers()
 myheaders.append('Authorization', access_token.access_token)
 let options = new RequestOptions({ headers: myheaders })
     this.http.get(`api/notifications`,options).subscribe(res=>{
       console.log(res)
+      let val = res.json();
+      if(val.success==true){
+          this.notifications= val.notification
+      }
       
     })
   }

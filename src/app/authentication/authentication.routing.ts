@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
 
-import { ForgotComponent } from './forgot/forgot.component';
-import {LockScreenComponent} from './lock-screen/lock-screen.component';
+import { WithSocialComponent } from './login/with-social/with-social.component';
+import {CommonModule} from '@angular/common';
+
+import {SharedModule} from '../shared/shared.module';
+import { RegisterComponent } from './register/register.component';
 
 export const AuthenticationRoutes: Routes = [
   {
@@ -9,24 +13,18 @@ export const AuthenticationRoutes: Routes = [
     children: [
       {
         path: 'login',
-        loadChildren: './login/login.module#LoginModule',
+        component:WithSocialComponent,
+        data: {
+          breadcrumb: 'Login'
+        }
+      },{
+        path: 'register',
+        component:WithSocialComponent,
         data: {
           breadcrumb: 'Login'
         }
       },
-      {
-        path: 'forgot',
-        component: ForgotComponent,
-        data: {
-          breadcrumb: 'Forgot'
-        }
-      },
-      {
-      path: 'lock-screen',
-      component: LockScreenComponent,
-        data: {
-          breadcrumb: 'Lock Screen'
-        }
-    }]
+      
+    ]
   }
 ];
