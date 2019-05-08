@@ -14,6 +14,7 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { LoginServiceService } from './service/login-service.service';
 import { AdminServiceService } from './service/admin-service.service';
+import { UserService } from './service/user.service';
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -27,26 +28,7 @@ export const AppRoutes: Routes = [{
     }, {
       path: 'dashboard',
       loadChildren: './dashboard/dashboard.module#DashboardModule'
-    }, {
-      path: 'basic',
-      loadChildren: './components/basic/basic.module#BasicModule'
-    }, {
-      path: 'advance',
-      loadChildren: './components/advance/advance.module#AdvanceModule'
-    }, {
-      path: 'forms',
-      loadChildren: './components/forms/forms.module#FormsModule'
-    }, {
-      path: 'bootstrap-table',
-      loadChildren: './components/tables/bootstrap-table/bootstrap-table.module#BootstrapTableModule',
-    }, {
-      path: 'map',
-      loadChildren: './map/map.module#MapModule',
-    }, {
-      path: 'simple-page',
-      loadChildren: './simple-page/simple-page.module#SimplePageModule'
-    },
-    
+    }, 
     {
       path: 'profile',
       component:ProfileComponent
@@ -60,10 +42,12 @@ export const AppRoutes: Routes = [{
       component:ListExamsComponent
     },
     {
+      canActivate:[UserService],
       path: 'exams/:id',
       component:StartExamComponent
     },
     {
+      canActivate:[UserService],
       path: 'history',
       component:HistoryComponent
     },

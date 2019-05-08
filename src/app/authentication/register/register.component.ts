@@ -10,11 +10,18 @@ import { User } from '../../interface/user';
 })
 export class RegisterComponent implements OnInit {
    customer:User
+   ConfirmPassword: string
+  
   constructor(private http:Http) { 
     this.customer= {}
   }
 
   ngOnInit() {
+  }
+  isFullInfo(){
+    if(!this.customer.username || !this.customer.password || !this.customer.first_name || !this.customer.last_name || !this.customer.email )
+    return false
+    else return true
   }
   onSubmit(){
     console.log(this.customer)

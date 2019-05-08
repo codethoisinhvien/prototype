@@ -84,7 +84,9 @@
                         <i class="ti-settings"></i> Thi
                       </a>
                    
-                    <a (click)="logout()"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                    <a (click)="logout()"><i class="fas fa-sign-out-alt"></i>
+
+                      Logout</a>
                   </li>
                 </ul>
               </div>
@@ -97,7 +99,7 @@
             <div class="main-body">
               <div class="page-wrapper">
                 <app-title></app-title>
-                <app-breadcrumbs></app-breadcrumbs>
+                
                 <div class="page-body">
                   <router-outlet><spinner></spinner></router-outlet>
                 </div>

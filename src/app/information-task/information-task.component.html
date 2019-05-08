@@ -3,10 +3,10 @@
     <div class="col-8">
       <div class="row">
 
-        <h2 style="float: right;">Mã đề Se-21</h2>
+        <h2 style="float: right;">{{exam.name}}</h2>
 
       </div>
-      <div class='row' *ngFor="let x of exam.exam.questions; let i = index" style="margin: 3px">
+      <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
         <div class="qItem" id="questionRegionItem_6022">
           <h4 class="qItem-QTitle">
             <strong>Câu hỏi số {{i+1}}</strong>

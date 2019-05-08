@@ -1,9 +1,10 @@
+<div>
 <div *ngIf="!show" class="row" style="background:green grey;">
   <div class="col-md-4"></div>
   <div class="col-md-4 col-md-offset-4">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">SE-21</h4>
+        <h4 class="card-title">{{exam.name}}</h4>
         <div class="template-demo">
           <table class="table mb-0">
             <thead>
@@ -13,23 +14,14 @@
               </tr>
             </thead>
             <tbody>
+              
               <tr>
-                <td class="pl-0">Môn học</td>
-                <td class="pr-0 text-right">
-                  <div class="badge badge-pill badge-primary"><i class="mdi mdi-account"></i></div>
-                </td>
+                <td class="pl-0">Thời gian làm bài</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary">{{exam.timedo}} phút</div></td>
               </tr>
               <tr>
-                <td class="pl-0">Thời gian thi </td>
-                <td class="pr-0 text-right">
-                  <div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div>
-                </td>
-              </tr>
-              <tr>
-                <td class="pl-0">Số câu hỏi </td>
-                <td class="pr-0 text-right">
-                  <div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div>
-                </td>
+                <td class="pl-0">Tổng điểm bài thi</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary">{{exam.score}} </div></td>
               </tr>
               <tr>
                 <button class="btn btn-primary" type="button" (click)='start()'>Bắt đầu</button>
@@ -40,94 +32,98 @@
     </div>
   </div>
 </div>
+
+
+</div>
 <div>
-  <div *ngIf="show" class="row" style="background:white">
-    <div class="col-8">
-      <div class="row">
-
-        <h2 style="float: right;">Mã đề Se-21</h2>
-
-      </div>
-      <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
-        <div class="qItem" id="questionRegionItem_6022">
-          <h4 class="qItem-QTitle">
-            <strong>Câu hỏi số {{i+1}}</strong>
-
-          </h4>
-          <div class="qItem-Content">
-            <p>{{x.content}} </p>
-          </div>
-          
-          <div class="qItem-Answer">
-            <input type="hidden" id="hidden_6022" name="hidden_6022" class="hiddenQIDCSS" data-id="6022" value="B">
-            <ul class="qItem-Answer-ul">
-              <li *ngFor="let y of x.answers">
-                <div class="checkbox checkbox-success checkbox-inline">
-                  <input type="radio" name="{{x.id}}" id="q_6022A"(click)="updateAnswer(x.id,y.id)">
-                  <label for="q_6022A">
-                    <p>{{y.content}}</p>
-                  </label>
-                </div>
-              </li>
-              
-              
+    <div *ngIf="show" class="row" style="background:white">
+      <div class="col-8">
+        <div class="row">
+  
+          <h2 style="float: right;">{{exam.name}}</h2>
+  
+        </div>
+        <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
+          <div class="qItem" id="questionRegionItem_6022">
+            <h4 class="qItem-QTitle">
+              <strong>Câu hỏi số {{i+1}}</strong>
+  
+            </h4>
+            <div class="qItem-Content">
+              <p>{{x.content}} </p>
+            </div>
             
-            </ul>
+            <div class="qItem-Answer">
+              <input type="hidden" id="hidden_6022" name="hidden_6022" class="hiddenQIDCSS" data-id="6022" value="B">
+              <ul class="qItem-Answer-ul">
+                <li *ngFor="let y of x.answers">
+                  <div class="checkbox checkbox-success checkbox-inline">
+                    <input type="radio" name="{{x.id}}" id="q_6022A"(click)="updateAnswer(x.id,y.id)">
+                    <label for="q_6022A">
+                      <p>{{y.content}}</p>
+                    </label>
+                  </div>
+                </li>
+                
+                
+              
+              </ul>
+            </div>
           </div>
         </div>
+  
       </div>
-
-    </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">SE-21</h4>
-          <div class="template-demo">
-            <div class="row">
-              <table class="table mb-0">
-                <thead>
-                  <tr>
-                    <th class="pl-0"></th>
-                    <th class="text-right"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="pl-0">Thời gian thi </td>
-                    <td class="pr-0 text-right">
-                      <div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div>
-                    </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </div>
-
-            <div class="row">
-              <div *ngFor='let x of questions' class="col-4 grid-margin stretch-card">
-
-
-
-                <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
-
-
-
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{exam.name}}</h4>
+            <div class="template-demo">
+              <div class="row">
+                <table class="table mb-0">
+                  <thead>
+                    <tr>
+                      <th class="pl-0"></th>
+                      <th class="text-right"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="pl-0">Thời gian thi </td>
+                      <td class="pr-0 text-right">
+                          <ngb-timepicker *ngIf="show2"[(ngModel)]="time"></ngb-timepicker>
+                          <ngb-timepicker *ngIf="!show2"[(ngModel)]="time"></ngb-timepicker>
+                      </td>
+                    </tr>
+  
+  
+                  </tbody>
+                </table>
               </div>
-
-
-            </div>
-            <div class="row grid-margin stretch-card">
-              <div class="col-4">
+  
+              <div class="row">
+                <div *ngFor='let x of questions' class="col-4 grid-margin stretch-card">
+  
+  
+  
+                  <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
+  
+  
+  
+                </div>
+  
+  
               </div>
-              <div class="col-4">
-                <button type="button" (click)= 'onSubmit()' class="btn btn-inverse-primary btn-rounded"> Nộp bài</button>
+              <div class="row grid-margin stretch-card">
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                  <button type="button" (click)= 'onSubmit()' class="btn btn-inverse-primary btn-rounded"> Nộp bài</button>
+                </div>
               </div>
+  
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

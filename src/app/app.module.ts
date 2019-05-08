@@ -32,6 +32,7 @@ import { LoginServiceService } from './service/login-service.service';
 import { ShareServiceService } from './service/share-service.service';
 import { AdminServiceService } from './service/admin-service.service';
 import { ExamService } from './service/exam.service';
+import { UserService } from './service/user.service';
 
 
 
@@ -56,6 +57,7 @@ import { ExamService } from './service/exam.service';
     ListUserComponent,
     ListRoleComponent,
     NotificationComponent,
+  
     
    
   ],
@@ -67,7 +69,7 @@ import { ExamService } from './service/exam.service';
     FormsModule,
     HttpModule,
     ScrollModule,
-    
+
   ],
   exports: [ScrollModule],
   providers: [
@@ -76,7 +78,8 @@ import { ExamService } from './service/exam.service';
       LoginServiceService,
       ShareServiceService,
       AdminServiceService,
-      ExamService
+      ExamService,
+      UserService
   ],
   bootstrap: [AppComponent],
   entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent,NotificationComponent]

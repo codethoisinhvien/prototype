@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Login, Access } from '../../../interface/Login';
+import { LoginServiceService } from '../../../service/login-service.service';
 
 @Component({
   selector: 'app-with-social',
@@ -8,27 +9,13 @@ import { Login, Access } from '../../../interface/Login';
 })
 export class WithSocialComponent implements OnInit {
   customer:Login
-  constructor(private http:Http) {
+  constructor(private loginservice :LoginServiceService) {
     this.customer={}
    }
        
   ngOnInit() {
   }
   onSubmit(){
-  console.log(this.customer)
-  this.http.post('api/login',this.customer).subscribe(res=>{
-    
-   let val  = res.json();
-   console.log(val)
-   if(val.success==true){
-     localStorage.setItem('user',JSON.stringify(val));
-      
-    
-   }else{
-     confirm(val.message)
-   }
-
-  })
+  this.loginservice.login(this.customer)
   }
-
 }

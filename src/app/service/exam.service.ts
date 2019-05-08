@@ -30,12 +30,16 @@ export class ExamService {
 
       })
   }
-  submitExam() {
-
+  submitExam(task_id:number) :Promise<any>  {
+   
+      return this.http.delete(`/api/tasks/${task_id}`,this.share.getHeaders())
+      .toPromise()
+      .then(res=>res.json())
+      .catch()
   }
   updateAnswer(question_id,answer_id,task_id): Promise<any>{
     
-    return this.http.put(`/api/tasks/${task_id}`,{question_id,answer_id})
+    return this.http.put(`/api/tasks/${task_id}`,{question_id,answer_id},this.share.getHeaders())
     .toPromise()
     .then(res => res.json())
     .catch(err => {
@@ -49,4 +53,10 @@ export class ExamService {
     .catch()
     
   }
+  getExamResult(task_id):Promise<any>{
+   return this.http.get('/api/tasks/1',this.share.getHeaders()).toPromise()
+   .then(res=>res.json())
+   .catch()
+  }
+  
 }

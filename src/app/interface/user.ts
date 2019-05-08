@@ -4,7 +4,7 @@ export interface User{
     email?:string
     username?:string
     password?:string
-    birthday?:string
+    birthday?:any
     sex?:string
     createdAt?:Date
 }

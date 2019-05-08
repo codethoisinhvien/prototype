@@ -19,7 +19,7 @@ export const AuthenticationRoutes: Routes = [
         }
       },{
         path: 'register',
-        component:WithSocialComponent,
+        component:RegisterComponent,
         data: {
           breadcrumb: 'Login'
         }

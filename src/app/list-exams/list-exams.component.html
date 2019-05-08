@@ -13,17 +13,17 @@
             </thead>
             <tbody>
               <tr>
-                <td class="pl-0">SỐ bài thi hiện có</td>
-                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary"><i class="mdi mdi-account"></i></div></td>
+                <td class="pl-0">Thời gian làm bài</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary">{{x.timedo}} phút</div></td>
               </tr>
               <tr>
-                <td class="pl-0">Số bài thi đã thi</td>
-                <td class="pr-0 text-right"><div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div></td>
+                <td class="pl-0">Tổng điểm bài thi</td>
+                <td class="pr-0 text-right"><div class="badge badge-pill badge-primary">{{x.score}} </div></td>
               </tr>
               <tr>
                <a *ngIf="role>=2"href="mod/exams/{{x.id}}"><button class="btn btn-primary" type="button">Sửa</button></a>
                <a *ngIf="role>=2"><button class="btn btn-primary" type="button" (click)="delete(x)">Xóa</button></a>
-               <a *ngIf="role==1"href="/exams/{{x.id}}?JSON.stringfy(x)"><button class="btn btn-primary" type="button">Chọn</button></a>
+               <a *ngIf="role==1"href="/exams/{{x.id}}?timedo={{x.timedo}}&&score={{x.score}}&&title={{x.name}}" ><button class="btn btn-primary" type="button">Chọn</button></a>
             </tbody>
           </table>
         </div>

@@ -1,6 +1,5 @@
-<app-card [title]="'Input Alignment'">
-  <h4 class="sub-title">Input Alignment</h4>
-  <p>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</p>
+<app-card [title]="'Thông tin cá nhân '">
+
   <form (ngSubmit)="onSubmit()">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">First name</label>
@@ -12,7 +11,8 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Last name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control form-control-bold" placeholder="Last name" name="last_name" [(ngModel)]="customer.last_name">
+        <input type="text" class="form-control form-control-normal" placeholder="Last name" name="last_name"
+          [(ngModel)]="customer.last_name">
       </div>
     </div>
     <div class="form-group row">
@@ -20,28 +20,27 @@
 
 
       <div class="col-sm-10">
-        <input type="email" class="form-control form-control-capitalize" placeholder="email" name="email" [(ngModel)]="customer.email">
+        <input type="email" class="form-control form-control-normal" placeholder="email" name="email" [(ngModel)]="customer.email">
       </div>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Username</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control form-control-uppercase" placeholder="Username" name="username"
-          [(ngModel)]="customer.username">
-      </div>
-    </div>
+
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Birthday</label>
       <div class="col-sm-10">
-        <input type="text" data-date="" data-date-format="YYYY-MM-DD hh:mm:ss A Z" class="form-control form-control-uppercase" placeholder="brithday" name="brithday"
-          [(ngModel)]="customer.birthday">
+        <div class="input-group">
+        <input class="form-control form-control-normal" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="customer.birthday">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+        </div>
       </div>
+
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Sex</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control form-control-uppercase" placeholder="Sex" name="sex"
+        <input type="text" class="form-controlform-control form-control-normal" placeholder="Sex" name="sex"
           [(ngModel)]="customer.sex">
       </div>
     </div>
