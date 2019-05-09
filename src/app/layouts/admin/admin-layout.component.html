@@ -75,18 +75,27 @@
                   <li [@mobileMenuTop]="isCollapsedSideBar" class="more-details" [ngClass]="isCollapsedSideBar">
                     <a href="/profile"><i class="ti-user"></i>Setting Profile</a>
                     
-                      <a href="/history">
+                      <a *ngIf="role==1"href="/history">
                         <i class="ti-settings"></i> History
                       </a>
                     
                     
-                      <a href="/topics">
+                      <a *ngIf="role==1" href="/topics">
                         <i class="ti-settings"></i> Thi
                       </a>
-                   
+                      <a *ngIf="role==2" href="/topics">
+                        <i class="ti-settings"></i> Tạo đề thi
+                      </a>
+                      <a *ngIf="role==3" href="/users">
+                        <i class="ti-settings"></i> Danh sách ngươì sủ dụng
+                      </a>
+                      <a *ngIf="role==3">
+                        <i class="fas fa-plus-square"></i>Tạo thông báo
+                      </a>
                     <a (click)="logout()"><i class="fas fa-sign-out-alt"></i>
 
                       Logout</a>
+                    
                   </li>
                 </ul>
               </div>
@@ -111,18 +120,4 @@
     </div>
   </div>
 </div>
-<go-top-button [html]="htmlButton"
-               [animate]="true"
-               [speed]="50"
-               [acceleration]="2"
-               [scrollDistance]="100"
-               [styles]="{
-                    'right': '50px',
-                    'bottom': '50px',
-                    'top': 'auto',
-                    'left': 'auto',
-                    'width': 'auto',
-                    'height': 'auto',
-                    'background' : 'transparent'
-                 }">
-</go-top-button>
+<app-footer></app-footer>

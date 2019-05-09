@@ -54,9 +54,19 @@ export class ExamService {
     
   }
   getExamResult(task_id):Promise<any>{
-   return this.http.get('/api/tasks/1',this.share.getHeaders()).toPromise()
+   return this.http.get(`/api/tasks/${task_id}`,this.share.getHeaders()).toPromise()
    .then(res=>res.json())
    .catch()
+  }
+  createExam(data:any){
+    
+  }
+  updateQuestion(question):Promise<any>{
+    return this.http.put(`api/questions/${question.id}`,question,this.share.getHeaders()).toPromise()
+    .catch()
+    .then(res=>{
+      res.json()
+    })
   }
   
 }

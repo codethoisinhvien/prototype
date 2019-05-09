@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionComponent } from '../question/question.component';
 import { AccessToken } from '../interface/Login';
 import { ListQuestionComponent } from '../list-question/list-question.component';
+import { ExamService } from '../service/exam.service';
 
 @Component({
   selector: 'app-create-question',
@@ -16,7 +17,7 @@ import { ListQuestionComponent } from '../list-question/list-question.component'
 export class CreateQuestionComponent implements OnInit {
   exam: Exam
   modalRef: any
-  constructor(private http: Http, private router: ActivatedRoute, private modalService: NgbModal) {
+  constructor(private examService :  ExamService, private http:Http, private router: ActivatedRoute, private modalService: NgbModal) {
     this.exam = {
 
       questions: []
@@ -67,15 +68,18 @@ export class CreateQuestionComponent implements OnInit {
       let question: Question = {};
       question = $e
       question.subject_id = this.exam.subject_id
-      
-     this.http.put(`api/questions/${question.id}`,question).subscribe(res=>{
-      let val = res.json()
-      if (val.success == true) {
+      this.examService.updateQuestion(question).then(res=>{
+        console.log(res)
+         this.loadData()
+      })
+    //  this.http.put(`api/questions/${question.id}`,question).subscribe(res=>{
+    //   let val = res.json()
+    //   if (val.success == true) {
   
     
-        this.loadData()
-      }
-     })
+       
+    //   }
+    //  })
     
     console.log($e)
     })

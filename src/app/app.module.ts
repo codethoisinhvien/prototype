@@ -14,7 +14,7 @@ import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.co
 import { TitleComponent } from './layouts/admin/title/title.component';
 import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent} from './profile/profile.component';
 import { ListSubjectComponent } from './list-subject/list-subject.component';
 import { ListExamsComponent } from './list-exams/list-exams.component';
 import { StartExamComponent } from './start-exam/start-exam.component';
@@ -33,6 +33,7 @@ import { ShareServiceService } from './service/share-service.service';
 import { AdminServiceService } from './service/admin-service.service';
 import { ExamService } from './service/exam.service';
 import { UserService } from './service/user.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -57,7 +58,7 @@ import { UserService } from './service/user.service';
     ListUserComponent,
     ListRoleComponent,
     NotificationComponent,
-  
+    FooterComponent
     
    
   ],

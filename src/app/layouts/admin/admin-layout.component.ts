@@ -48,6 +48,7 @@ export class AdminLayoutComponent implements OnInit {
   toggleOn = true;
   windowWidth: number;
   notifications:Notification[]=[]
+  role:number
 
   public htmlButton: string;
   user :AccessToken
@@ -63,6 +64,7 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.user= JSON.parse(localStorage.getItem('user'))
+    this.role= this.user.role
    
   }
 
@@ -126,6 +128,7 @@ export class AdminLayoutComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
   getNotification(){
+  
   let access_token: AccessToken = {}  
 access_token = JSON.parse(localStorage.getItem('user'))
 let myheaders: Headers = new Headers()

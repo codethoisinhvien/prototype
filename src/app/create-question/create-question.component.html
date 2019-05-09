@@ -1,127 +1,147 @@
-
 <div>
-  <div class="row" style="background:white">
-    <div class="col-8">
-      <div class="row">
-
-       
-
-      </div>
-      <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
-        <div class="col-8" id="questionRegionItem_6022">
-          <h4 class="qItem-QTitle">
-            <strong>Câu hỏi số {{i+1}}</strong>
-
-          </h4>
-          <div class="row">
-            <div class="qItem-Content col-8">
-              <p>{{x.content}}</p>
-
-            </div>
-         
-          </div>
-
-          <div class="qItem-Answer">
-
-            <label>Cac ddap an</label>
-            <ul class="qItem-Answer-ul">
-              <li *ngFor="let y of x.answers">
-                <div class="checkbox checkbox-success checkbox-inline col-12 row">
-                  <div class="row">
-                      <div class="col-2">
-                         
-                          <input *ngIf="y.question_answer!=nulL&&y.question_answer.right==true"type="checkbox"  checked />
-                          <input *ngIf="y.question_answer!=null&&!y.question_answer.right"type="checkbox"  disabled/>
+    <div class="row" style="background:white">
+      <div class="col-8">
+      
+        <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
+          <div class="col-8" id="questionRegionItem_6022">
+            <div class="card table-card" >
+  
+              <div class="card-header">
+                <h5><strong>Câu hỏi số {{i+1}}: {{x.content}}</strong></h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <!-- <div class="qItem-Content col-8">
+                      <p>{{x.content}}</p>     
+                    </div> -->
+                  <!-- <h5 style="color: black"> {{x.content}}</h5>                 -->
+                </div>
+                <br>
+                <div class="qItem-Answer">
+                  <h5>Đáp Án: </h5>
+                  <ul class="qItem-Answer-ul">
+                    <li *ngFor="let y of x.answers">
+                      
+                        <div class="row">
+                          <div class="col-1">
+                            <input *ngIf="y.question_answer!=nulL&&y.question_answer.right==true" type="checkbox" checked />
+                            <input *ngIf="y.question_answer!=null&&!y.question_answer.right" type="checkbox" disabled />
+                          </div>
+                          <div class="col-11">
+                            <p>{{y.content}}</p>
+                          </div>
+  
+  
                         </div>
-                    <div class="col-8">
-                      <p>{{y.content}}</p>
+  
+                    </li>
+                  </ul>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <div class="card-title">
+            <button type="button" (click)='deleteQuestion(i)' class="btn btn-info">Xóa</button>
+            <button type="button" (click)='updateQuestion(i)' class="btn btn-info"> Sửa </button>
+          </div>
+        </div>
+  
+  
+  
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+           
+           
+            <div class="row">
+              <div class="col-8">
+                <h4 class="card-title">Thông tin bài thi</h4>
+              </div>
+              <div class="col-4">
+                <button class="btn btn-success">Gửi</button>
+              </div>
+            </div>
+           
+            <!-- <div class="template-demo"> -->
+            
+                <!-- <div class="col-2"> -->
+                  <table class="table mb-0">
+                    <thead>
+                      
+                    </thead>
+                    
+                    <tr> 
+                      <label>Tên bài thi </label>
+                      <input type="text" class=" form-control form-control-success" >
+                    </tr>
+                
+                    <tr>
+                      <label>Điểm </label>
+                      <input type="text" class=" form-control form-control-success" >
+                    </tr>
+                  
+                    <tr>
+                        <label>Trạng thái </label>
+                       
+                          <select name="select" class="form-control form-control-success">
+                            <option value="opt3">Mở</option>
+                            <option value="opt4">Đóng</option>
+                          </select>
+  
+                    </tr>
+                   
+                    <tr>
+                      <label>Thời gian thi</label>
+                      <input type="text" class=" form-control form-control-success">
+  
+                    </tr>
+                    
+                    </tbody>
+  
+                  </table>
+                 <br>
+  
+                  <table>
+                   
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="button" (click)='open()' class="btn btn-primary"> Them cau hoi</button>
+                      </div>
+                      <div class="col-6">
+                        <button type="button" (click)='openBank()' class="btn btn-primary "> Câu hỏi có sẵn</button>
+                      </div>
                     </div>
                     
-                    
-                  </div>
-
-                </div>
-              </li>
+                  </table>
+                  
+               
              
-
-
-            </ul>
-          </div>
-        </div>
-        <div class="col-4">
-            <button type="button" (click)='deleteQuestion(i)' class="btn btn-inverse-primary btn-rounded">Xóa</button>
-          <button type="button" (click)='updateQuestion(i)' class="btn btn-inverse-primary btn-rounded"> Sửa </button>
-        </div>
-       
-      </div>
-
-    </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">SE-21</h4>
-          <div class="template-demo">
-            <div class="row">
-              <table class="table mb-0">
-                <thead>
-                  <tr>
-                    <th class="pl-0"></th>
-                    <th class="text-right"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <label>Tên bài thi </label>
-                   <input type="text" name="name">
-                   
-                  </tr>
-                  <tr>
-                      <label>Điểm </label>
-                     <input type="text" name="name">
-                     
-                    </tr>
-                    <tr>
-                        <label>Trạng thái  </label>
-                       <input type="text" name="name">
-                       
-                      </tr>
-
-                      <tr>
-                          <label>Thời gian thi</label>
-                         <input type="text" name="name">
-                         
-                        </tr>
-
-
-                </tbody>
-              </table>
-            </div>
-
-            <div class="row">
-              <div *ngFor='let x of questions' class="col-sm-10 grid-margin stretch-card">
-
-
-
-                <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
-
-
-
-              </div>
-
-
-            </div>
-            <div class="row grid-margin stretch-card">
-              <div class="col-4">
-              </div>
-              <div class="col-4">
-                <button type="button" (click)='open()' class="btn btn-inverse-primary btn-rounded"> Them cau hoi</button>
-                <button type="button" (click)='openBank()' class="btn btn-inverse-primary btn-rounded"> Them cau hoi tu ngan hang cau hoi</button>
-              </div>
-            </div>
-
+  
+              <!-- <div class="row">
+                <div *ngFor='let x of questions' class="col-sm-10 grid-margin stretch-card">
+  
+  
+  
+                  <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
+  
+  
+  
+                </div>
+  
+  
+              </div> -->  
+              <!-- <div class="row grid-margin stretch-card">
+                <div class="col-4">
+                    
+                </div>
+  
+              </div> -->
+  
+            <!-- </div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

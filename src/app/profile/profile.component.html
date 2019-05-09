@@ -1,53 +1,62 @@
-<app-card [title]="'Thông tin cá nhân '">
+<div class="row">
+  <div class="col-2"></div>
+  <app-card [title]="'Thông tin cá nhân '" class="col-7">
 
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">First name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control form-control-normal" placeholder="First name" name="first_name"
-          [(ngModel)]="customer.first_name">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Last name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control form-control-normal" placeholder="Last name" name="last_name"
-          [(ngModel)]="customer.last_name">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Email</label>
-
-
-      <div class="col-sm-10">
-        <input type="email" class="form-control form-control-normal" placeholder="email" name="email" [(ngModel)]="customer.email">
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Birthday</label>
-      <div class="col-sm-10">
-        <div class="input-group">
-        <input class="form-control form-control-normal" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="customer.birthday">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">First name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-normal" placeholder="First name" name="first_name"
+            [(ngModel)]="customer.first_name">
         </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Last name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-normal" placeholder="Last name" name="last_name"
+            [(ngModel)]="customer.last_name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email</label>
+
+
+        <div class="col-sm-10">
+          <input type="email" class="form-control form-control-normal" placeholder="email" name="email" [(ngModel)]="customer.email">
         </div>
       </div>
 
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Sex</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-controlform-control form-control-normal" placeholder="Sex" name="sex"
-          [(ngModel)]="customer.sex">
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Birthday</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input class="form-control form-control-normal" name="birthday"  
+              ngbDatepicker #d="ngbDatepicker" [(ngModel)]="customer.birthday" value="{{customer.birthday}}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fas fa-calendar-week"></i></button>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-    <div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Sex</label>
+        <div class="col-sm-10">
+          <select class='form-control' name="sex"  [(ngModel)]="customer.sex">
+            <option value='male'>Male</option>
+            <option value='female'>Female</option>
+            
+          </select>
+        </div>
+      </div>
+
       <div>
-        <input type="submit" class="form-control form-control-rtl" placeholder=".form-control-rtl">
+        <div>
+          <button type="submit" class="btn btn-success btn-block" placeholder=".form-control-rtl">Thay đổi</button>
+        </div>
       </div>
-    </div>
-  </form>
-</app-card>
+    </form>
+  </app-card>
+  <div class="col-2"></div>
+</div>

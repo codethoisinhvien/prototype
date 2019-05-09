@@ -35,23 +35,26 @@
 
 
 </div>
-<div>
+<div >
     <div *ngIf="show" class="row" style="background:white">
       <div class="col-8">
         <div class="row">
   
-          <h2 style="float: right;">{{exam.name}}</h2>
+          <div class="col-sm-8">
+            <h2 style="float: right;"> <strong style="color: darkgray">{{exam.name}}</strong></h2>
+          </div>
+         
   
         </div>
         <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
           <div class="qItem" id="questionRegionItem_6022">
-            <h4 class="qItem-QTitle">
-              <strong>Câu hỏi số {{i+1}}</strong>
+            <h6 class="qItem-QTitle">
+              <strong>Câu {{i+1}}: {{x.content}}</strong>
   
-            </h4>
-            <div class="qItem-Content">
-              <p>{{x.content}} </p>
-            </div>
+            </h6>
+            <!-- <div class="qItem-Content">
+              <p> </p>
+            </div> -->
             
             <div class="qItem-Answer">
               <input type="hidden" id="hidden_6022" name="hidden_6022" class="hiddenQIDCSS" data-id="6022" value="B">

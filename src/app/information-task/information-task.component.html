@@ -2,19 +2,19 @@
   <div class="row" style="background:white">
     <div class="col-8">
       <div class="row">
-
-        <h2 style="float: right;">{{exam.name}}</h2>
+        <div class="col-sm-8">
+          <h2 style="float: right"><strong>{{exam.name}}</strong></h2>
+        </div>
+       
 
       </div>
       <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
         <div class="qItem" id="questionRegionItem_6022">
-          <h4 class="qItem-QTitle">
-            <strong>Câu hỏi số {{i+1}}</strong>
+          <h6 class="qItem-QTitle">
+            <strong>Câu hỏi số {{i+1}}: {{x.content}} </strong>
 
-          </h4>
-          <div class="qItem-Content">
-            <p>{{x.content}} </p>
-          </div>
+          </h6>
+          
           <div>
               <p *ngIf="!x.tasks.length" style="color: red"> Chưa có câu trả lời </p>
           </div>
@@ -44,56 +44,6 @@
       </div>
 
     </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">SE-21</h4>
-          <div class="template-demo">
-            <div class="row">
-              <table class="table mb-0">
-                <thead>
-                  <tr>
-                    <th class="pl-0"></th>
-                    <th class="text-right"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="pl-0">Thời gian thi </td>
-                    <td class="pr-0 text-right">
-                      <div class="badge badge-pill badge-outline-info"><i class="mdi mdi-cloud-outline"></i></div>
-                    </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </div>
-
-            <div class="row">
-              <div *ngFor='let x of questions' class="col-4 grid-margin stretch-card">
-
-
-
-                <button type="button" class="btn btn-inverse-primary btn-rounded"> Câu {{x}}</button>
-
-
-
-              </div>
-
-
-            </div>
-            <div class="row grid-margin stretch-card">
-              <div class="col-4">
-              </div>
-              <div class="col-4">
-                <button type="button" (click)='onSubmit()' class="btn btn-inverse-primary btn-rounded"> Nộp bài</button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </div>
