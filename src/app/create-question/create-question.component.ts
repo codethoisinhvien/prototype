@@ -96,21 +96,36 @@ export class CreateQuestionComponent implements OnInit {
       question = $e
       question.subject_id = this.exam.subject_id
       if(question.id==undefined){
-      this.http.post(`api/questions`, question).subscribe(res => {
-        console.log(res)
-        let val = res.json();
-        if (val.success == true) {
-          let question_id = val.question.id
-          question.id = question_id
-          this.http.put(`api/exams/${this.exam.id}?action=add`, { question_id, score: 1 }).subscribe(res => {
-            let val = res.json()
-            if (val.success == true) {
+        this.examService.createQuestion(question).then(val=>{
+          if (val.success == true) {
+                let question_id = val.question.id
+                question.id = question_id
+            this.examService.addQuestion(this.exam.id,{score:1,question_id},).then(val=>{
+             
+              if (val.success == true) {
+      
+                       this.loadData()
+                      }
+            })
+          }
+            
+            
+        })
+      // this.http.post(`api/questions`, question).subscribe(res => {
+      //   console.log(res)
+      //   let val = res.json();
+      //   if (val.success == true) {
+      //     let question_id = val.question.id
+      //     question.id = question_id
+      //     this.http.put(`api/exams/${this.exam.id}?action=add`, { question_id, score: 1 }).subscribe(res => {
+      //       let val = res.json()
+      //       if (val.success == true) {
 
-              this.loadData()
-            }
-          })
-        }
-      })
+      //         this.loadData()
+      //       }
+      //     })
+      //   }
+      // })
     }
     console.log($e)
     })
@@ -136,6 +151,17 @@ export class CreateQuestionComponent implements OnInit {
     this.modalRef.componentInstance.passEntry.subscribe(($e)=>{
       this.loadData()
      
+    })
+  }
+  updateConfig(){
+    let date ={name:this.exam.name,score:this.exam.score,status:this.exam.status,timedo:this.exam.timedo}
+    this.examService.updateConfig(this.exam.id,date)
+    .then(res=>{
+      if(res.success==true){
+       confirm(res.message)
+      }else{
+        confirm(res.message)
+      }
     })
   }
 }

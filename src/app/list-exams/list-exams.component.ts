@@ -11,6 +11,8 @@ import { ExamService } from '../service/exam.service';
 export class ListExamsComponent implements OnInit {
    exams:Exam[]
    role:number
+   maxsize =7
+   cpage=1
   constructor(private http:Http,private examService:ExamService) {
     this.exams=[]
     this.role=JSON.parse(localStorage.getItem('user')).role
@@ -20,10 +22,15 @@ export class ListExamsComponent implements OnInit {
     this.loadData()
   }
   loadData(){
-    this.examService.getListEXam(1).then(val=>{
+    this.examService.getListEXam(1,this.cpage).then(val=>{
        
       if(val.success==true){
         this.exams=val.data
+
+        if(this.exams.length>=6&&this.cpage>this.maxsize/6)
+        this.maxsize+=6
+        console.log(this.exams)
+
       }
     })
      
@@ -32,5 +39,10 @@ export class ListExamsComponent implements OnInit {
     this.examService.deleteExam(x).then(res=>{
       console.log(res)
     })
+  }
+  loadPage(){
+    console.log(this.cpage)
+    this.loadData()
+   
   }
 }

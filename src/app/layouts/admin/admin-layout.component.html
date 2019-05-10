@@ -36,13 +36,13 @@
                   </li>
                   
                  
-                  <li *ngFor="let item of notifications">
+                  <li *ngFor="let item of notifications" (click)="seen(item)" >
                     <div class="media">
                       <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
+                      <div class="media-body" >
                         <h5 class="notification-user">Admin</h5>
                         <p class="notification-msg">{{item.content}}</p>
-                        <span class="notification-time">30 minutes ago</span>
+                        <span class="notification-time">{{item.createdAt}}</span>
                       </div>
                     </div>
                   </li>
@@ -89,8 +89,8 @@
                       <a *ngIf="role==3" href="/users">
                         <i class="ti-settings"></i> Danh sách ngươì sủ dụng
                       </a>
-                      <a *ngIf="role==3">
-                        <i class="fas fa-plus-square"></i>Tạo thông báo
+                      <a *ngIf="role==3" (click)="createNotification()">
+                        <i class="fas fa-plus-square" ></i>Tạo thông báo
                       </a>
                     <a (click)="logout()"><i class="fas fa-sign-out-alt"></i>
 

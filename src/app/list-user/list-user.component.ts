@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { User } from '../interface/user';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationComponent } from '../notification/notification.component';
+import { DetailComponent} from '../detail/detail.component';
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
@@ -12,7 +13,9 @@ export class ListUserComponent implements OnInit {
   page:number=0
   users:User[]
   isChangeRole:boolean= false
-  constructor(private http:Http,private modalService: NgbModal) { 
+
+
+  constructor(private http:Http, private modalService: NgbModal) { 
     
   }
 
@@ -21,10 +24,11 @@ export class ListUserComponent implements OnInit {
   }
   loadData(){
     this.http.get(`api/users?${this.page}`).subscribe(res=>{
-      console.log(res)
+      
       let val = res.json();
       if(val.success== true){
         this.users= val.users
+        console.log(this.users)
       }
     })
   }
@@ -42,4 +46,8 @@ export class ListUserComponent implements OnInit {
   createNotification(){
     this.modalService.open(NotificationComponent)
   }
+  openModal(i) {
+    const modalRef = this.modalService.open(DetailComponent);
+    modalRef.componentInstance.users = this.users[i];
+    }
 }

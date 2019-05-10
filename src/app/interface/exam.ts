@@ -3,6 +3,7 @@ export interface Exam{
     name?: string,
     score?: number,
     subject_id?:number
+    status?:boolean
     timedo?:number
     task_id?:number
     questions?:Question[]

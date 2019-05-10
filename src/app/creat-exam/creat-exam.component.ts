@@ -16,7 +16,7 @@ export class CreatExamComponent  {
     this.exam={}
    }
    save(){
-     console.log(this.exam)
+     
      this.exam.subject_id= this.name
      this.http.post('api/exams',this.exam).subscribe(res=>{
            let val = res.json();

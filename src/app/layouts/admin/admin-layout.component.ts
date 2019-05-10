@@ -6,6 +6,10 @@ import { MenuItems } from '../../shared/menu-items/menu-items';
 import { AccessToken } from '../../interface/Login';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router';
+import { ShareServiceService } from '../../service/share-service.service';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationComponent } from '../../notification/notification.component';
 
 export interface Options {
   heading?: string;
@@ -52,7 +56,7 @@ export class AdminLayoutComponent implements OnInit {
 
   public htmlButton: string;
   user :AccessToken
-  constructor(public menuItems: MenuItems,private http:Http,private router:Router) {
+  constructor(public menuItems: MenuItems,private http:Http,private router:Router,private share:ShareServiceService,private modalService: NgbModal) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
@@ -142,5 +146,14 @@ let options = new RequestOptions({ headers: myheaders })
       }
       
     })
+  }
+  seen(item){
+    console.log(item)
+    this.http.put('api/notifications/'+item.id,{},this.share.getHeaders()).subscribe(res=>{
+     console.log( res.json())
+    })
+  }
+  createNotification(){
+    this.modalService.open(NotificationComponent)
   }
 }

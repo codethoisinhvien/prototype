@@ -1,111 +1,111 @@
 <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
-    <!-- starts -->
-    <div class="auth-fluid">
-      
-      <div class="row">
-        
-        <div class="col-sm-12">
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
+  <!-- starts -->
+  <div class="auth-fluid">
     
-      <div class="login-card card-body auth-body">
-      <form (ngSubmit)="onSubmit()" class="md-float-material">
-          <div class="auth-box">
-        <div class="form-group row">
-          
-          <label class="col-sm-2 col-form-label text-inverse">First name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control form-control-normal" placeholder="First name" name="first_name"
-              [(ngModel)]="customer.first_name">
-            <div *ngIf="customer.first_name?.length == 0" class="alert-danger">
-              <strong>FirstName is requied</strong>
-            </div>
+    <div class="row">
+      
+      <div class="col-sm-12">
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  
+    <div class="login-card card-body auth-body">
+    <form (ngSubmit)="onSubmit()" class="md-float-material">
+        <div class="auth-box">
+      <div class="form-group row">
+        
+        <label class="col-sm-2 col-form-label text-inverse">First name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-normal" placeholder="First name" name="first_name"
+            [(ngModel)]="customer.first_name">
+          <div *ngIf="customer.first_name?.length == 0" class="alert-danger">
+            <strong>FirstName is requied</strong>
           </div>
+        </div>
 
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label text-inverse">Last name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control form-control-normal" placeholder="Last name" name="last_name"
-              [(ngModel)]="customer.last_name">
-            <div *ngIf="customer.last_name?.length == 0" class="alert-danger">
-              <strong>LastName is requied</strong>
-            </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-inverse">Last name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-normal" placeholder="Last name" name="last_name"
+            [(ngModel)]="customer.last_name">
+          <div *ngIf="customer.last_name?.length == 0" class="alert-danger">
+            <strong>LastName is requied</strong>
           </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label text-inverse">Email</label>
-          <div class="col-sm-10">
-              <span class="md-line"></span>
-            <input type="email" class="form-control form-control-normal" placeholder="email" name="email"
-              [(ngModel)]="customer.email">
-            <div *ngIf="customer.email?.length == 0" class="alert-danger">
-              <strong>Email is requied</strong>
-            </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-inverse">Email</label>
+        <div class="col-sm-10">
+            <span class="md-line"></span>
+          <input type="email" class="form-control form-control-normal" placeholder="email" name="email"
+            [(ngModel)]="customer.email">
+          <div *ngIf="customer.email?.length == 0" class="alert-danger">
+            <strong>Email is requied</strong>
           </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label text-inverse">User name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control form-control-normal" placeholder="Username" name="username"
-              [(ngModel)]="customer.username">
-            <div *ngIf="customer.username?.length == 0" class=" alert-danger">
-              <strong>UserName is required</strong>
-            </div>
-            <div *ngIf="customer.username?.length < 3 && customer.username" class=" alert-danger">
-              <strong>UserName must be longer than 3 characters</strong>
-            </div>
-            <div *ngIf="customer.username?.length > 10  && customer.username" class=" alert-danger">
-              <strong>UserName must be shorter than 10 characters</strong>
-            </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-inverse">User name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-normal" placeholder="Username" name="username"
+            [(ngModel)]="customer.username">
+          <div *ngIf="customer.username?.length == 0" class=" alert-danger">
+            <strong>UserName is required</strong>
+          </div>
+          <div *ngIf="customer.username?.length < 3 && customer.username" class=" alert-danger">
+            <strong>UserName must be longer than 3 characters</strong>
+          </div>
+          <div *ngIf="customer.username?.length > 10  && customer.username" class=" alert-danger">
+            <strong>UserName must be shorter than 10 characters</strong>
           </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label text-inverse">Password</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control form-control-normal" placeholder="Password" name="password"
-              [(ngModel)]="customer.password">
-            <div *ngIf="customer.password?.length == 0" class=" alert-danger">
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-inverse">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control form-control-normal" placeholder="Password" name="password"
+            [(ngModel)]="customer.password">
+          <div *ngIf="customer.password?.length == 0" class=" alert-danger">
+            <strong>PassWord is required</strong>
+          </div>
+          <div *ngIf="customer.password?.length < 3 && customer.password" class=" alert-danger">
+            <strong>PassWord must be longer than 3 characters</strong>
+          </div>
+          <div *ngIf="customer.password?.length > 10  && customer.password" class=" alert-danger">
+            <strong>PassWord must be shorter than 10 characters</strong>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-inverse">Confirm password</label>
+        <div class="col-sm-10">
+          <div>
+            <input type="text" class="form-control form-control-normal" placeholder="Confirm password"
+              name="cfpassword" [(ngModel)]="ConfirmPassword">
+            <div *ngIf="ConfirmPassword?.length == 0" class=" alert-danger">
               <strong>PassWord is required</strong>
             </div>
-            <div *ngIf="customer.password?.length < 3 && customer.password" class=" alert-danger">
-              <strong>PassWord must be longer than 3 characters</strong>
-            </div>
-            <div *ngIf="customer.password?.length > 10  && customer.password" class=" alert-danger">
-              <strong>PassWord must be shorter than 10 characters</strong>
-            </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label text-inverse">Confirm password</label>
-          <div class="col-sm-10">
-            <div>
-              <input type="text" class="form-control form-control-normal" placeholder="Confirm password"
-                name="cfpassword" [(ngModel)]="ConfirmPassword">
-              <div *ngIf="ConfirmPassword?.length == 0" class=" alert-danger">
-                <strong>PassWord is required</strong>
+            <div *ngIf="ConfirmPassword!= customer.password && ConfirmPassword  " class=" alert-danger">
+                <strong>PassWord is incorect</strong>
               </div>
-              <div *ngIf="ConfirmPassword!= customer.password && ConfirmPassword  " class=" alert-danger">
-                  <strong>PassWord is incorect</strong>
-                </div>
-            </div>
-           </div>
-
           </div>
-       
-        <div class="form-group row">
+         </div>
 
-          <div class='col-sm-12'>
-            <button type="submit" class="btn btn-success btn-block" *ngIf="isFullInfo() && ConfirmPassword == customer.password " >Register</button>
-          </div>
-           </div>
         </div>
+     
+      <div class="form-group row">
 
-      </form>
-    </div>
+        <div class='col-sm-12'>
+          <button type="submit" class="btn btn-success btn-block" *ngIf="isFullInfo() && ConfirmPassword == customer.password " >Register</button>
+        </div>
+         </div>
+      </div>
+
+    </form>
   </div>
-  <div class="col-sm-2"></div>
+</div>
+<div class="col-sm-2"></div>
 
 </div>
 </div>

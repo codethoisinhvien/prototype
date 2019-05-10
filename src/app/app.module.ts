@@ -34,6 +34,7 @@ import { AdminServiceService } from './service/admin-service.service';
 import { ExamService } from './service/exam.service';
 import { UserService } from './service/user.service';
 import { FooterComponent } from './footer/footer.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 
@@ -58,7 +59,8 @@ import { FooterComponent } from './footer/footer.component';
     ListUserComponent,
     ListRoleComponent,
     NotificationComponent,
-    FooterComponent
+    FooterComponent,
+    DetailComponent
     
    
   ],
@@ -80,9 +82,10 @@ import { FooterComponent } from './footer/footer.component';
       ShareServiceService,
       AdminServiceService,
       ExamService,
-      UserService
+      UserService,
+      
   ],
   bootstrap: [AppComponent],
-  entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent,NotificationComponent]
+  entryComponents:[CreatExamComponent,QuestionComponent,ListQuestionComponent,NotificationComponent, DetailComponent]
 })
 export class AppModule {}

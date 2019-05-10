@@ -10,7 +10,7 @@
       <label class="col-sm-2 col-form-label">Tới nhóm người dùng</label>
       <div class="col-sm-6">
 
-        <select id="roles" name="role" [(ngModel)]="data.condition.role">
+        <select id="roles" name="role"  class="form-control-success"[(ngModel)]="data.condition.role">
 
           <option value="1">User</option>
           <option value="2">Mod</option>
@@ -20,6 +20,6 @@
       </div>
 
     </div>
-      <button (click)="createNotification()">Tạo thông báos</button>
+      <button (click)="createNotification()" class="btn-success">Tạo thông báo</button>
   </form>
 </app-card>

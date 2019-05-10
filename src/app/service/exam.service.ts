@@ -7,8 +7,8 @@ import { ShareServiceService } from './share-service.service';
 export class ExamService {
 
   constructor(private http: Http, private share: ShareServiceService) { }
-  getListEXam(subject_id): Promise<any> {
-    return this.http.get(`api/subjects/${subject_id}`, this.share.getHeaders()).
+  getListEXam(subject_id, page): Promise<any> {
+    return this.http.get(`api/subjects/${subject_id}?page=${page}`, this.share.getHeaders()).
       toPromise()
       .then(res => res.json())
       .catch(
@@ -62,11 +62,36 @@ export class ExamService {
     
   }
   updateQuestion(question):Promise<any>{
-    return this.http.put(`api/questions/${question.id}`,question,this.share.getHeaders()).toPromise()
+    console.log( this.share.getHeaders())
+    return this.http.put(`api/questions/${question.id}`,question, this.share.getHeaders()).toPromise()
     .catch()
     .then(res=>{
       res.json()
     })
+  }
+  createQuestion(question):Promise<any>{
+    return this.http.post(`api/questions`, question).toPromise()
+    .then(res=>res.json())
+    .catch()
+
+       
+    
+   
+  }
+  addQuestion(exam_id,data):Promise<any>{
+    console.log( this.share.getHeaders())
+    return this.http.put(`api/exams/${exam_id}?action=add`, data, this.share.getHeaders()).toPromise()
+    .catch()
+    .then(res=>res.json()
+    )
+  }
+  
+  updateConfig(exam_id,data):Promise<any>{
+    console.log( this.share.getHeaders())
+    return this.http.patch(`api/exams/${exam_id}`, data, this.share.getHeaders()).toPromise()
+    .catch()
+    .then(res=>res.json()
+    )
   }
   
 }

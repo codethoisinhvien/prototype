@@ -1,125 +1,127 @@
 <div>
-    <div class="row" style="background:white">
-      <div class="col-8">
-      
-        <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
-          <div class="col-8" id="questionRegionItem_6022">
-            <div class="card table-card" >
-  
-              <div class="card-header">
-                <h5><strong>Câu hỏi số {{i+1}}: {{x.content}}</strong></h5>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <!-- <div class="qItem-Content col-8">
+  <div class="row" style="background:white">
+    <div class="col-8">
+
+      <div class='row' *ngFor="let x of exam.questions; let i = index" style="margin: 3px">
+        <div class="col-8" id="questionRegionItem_6022">
+          <div class="card table-card">
+
+            <div class="card-header">
+              <h5><strong>Câu hỏi số {{i+1}}: {{x.content}}</strong></h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <!-- <div class="qItem-Content col-8">
                       <p>{{x.content}}</p>     
                     </div> -->
-                  <!-- <h5 style="color: black"> {{x.content}}</h5>                 -->
-                </div>
-                <br>
-                <div class="qItem-Answer">
-                  <h5>Đáp Án: </h5>
-                  <ul class="qItem-Answer-ul">
-                    <li *ngFor="let y of x.answers">
-                      
-                        <div class="row">
-                          <div class="col-1">
-                            <input *ngIf="y.question_answer!=nulL&&y.question_answer.right==true" type="checkbox" checked />
-                            <input *ngIf="y.question_answer!=null&&!y.question_answer.right" type="checkbox" disabled />
-                          </div>
-                          <div class="col-11">
-                            <p>{{y.content}}</p>
-                          </div>
-  
-  
-                        </div>
-  
-                    </li>
-                  </ul>
-                </div>
+                <!-- <h5 style="color: black"> {{x.content}}</h5>                 -->
               </div>
-  
+              <br>
+              <div class="qItem-Answer">
+                <h5>Đáp Án: </h5>
+                <ul class="qItem-Answer-ul">
+                  <li *ngFor="let y of x.answers">
+
+                    <div class="row">
+                      <div class="col-1">
+                        <input *ngIf="y.question_answer!=nulL&&y.question_answer.right==true" type="checkbox" checked />
+                        <input *ngIf="y.question_answer!=null&&!y.question_answer.right" type="checkbox" disabled />
+                      </div>
+                      <div class="col-11">
+                        <p>{{y.content}}</p>
+                      </div>
+
+
+                    </div>
+
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="card-title">
-            <button type="button" (click)='deleteQuestion(i)' class="btn btn-info">Xóa</button>
-            <button type="button" (click)='updateQuestion(i)' class="btn btn-info"> Sửa </button>
+
           </div>
         </div>
-  
-  
-  
+        <div class="card-title">
+          <button type="button" (click)='deleteQuestion(i)' class="btn btn-info">Xóa</button>
+          <button type="button" (click)='updateQuestion(i)' class="btn btn-info"> Sửa </button>
+        </div>
       </div>
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-           
-           
+
+
+
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row">
+            <div class="col-8">
+              <h4 class="card-title">Thông tin bài thi</h4>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-success" (click)="updateConfig()">Gửi</button>
+            </div>
+          </div>
+
+          <!-- <div class="template-demo"> -->
+
+          <!-- <div class="col-2"> -->
+          <table class="table mb-0">
+            <thead>
+
+            </thead>
+
+            <tr>
+              <label>Tên bài thi </label>
+              <input type="text" class=" form-control form-control-success" [(ngModel)]="exam.name">
+            </tr>
+
+            <tr>
+              <label>Điểm </label>
+              <input type="number" class=" form-control form-control-success" [(ngModel)]="exam.score">
+            </tr>
+
+            <tr>
+              <label>Trạng thái </label>
+
+              <select name="select" class="form-control form-control-success" [(ngModel)]="exam.status">
+                <option *ngIf="exam.status==true" value="true" selected="selected">Mở</option>
+                <option *ngIf="exam.status!=true" value="true">Mở</option>
+                <option *ngIf="exam.status==true" value="true">Đóng</option>
+                <option *ngIf="exam.status!=true" value="true" selected="selected">Đóng</option>
+              </select>
+
+            </tr>
+
+            <tr>
+              <label>Thời gian thi</label>
+              <input type="number" class=" form-control form-control-success" [(ngModel)]="exam.timedo">
+
+            </tr>
+
+            </tbody>
+
+          </table>
+          <br>
+
+          <table>
+
             <div class="row">
-              <div class="col-8">
-                <h4 class="card-title">Thông tin bài thi</h4>
+              <div class="col-6">
+                <button type="button" (click)='open()' class="btn btn-primary"> Them cau hoi</button>
               </div>
-              <div class="col-4">
-                <button class="btn btn-success">Gửi</button>
+              <div class="col-6">
+                <button type="button" (click)='openBank()' class="btn btn-primary "> Câu hỏi có sẵn</button>
               </div>
             </div>
-           
-            <!-- <div class="template-demo"> -->
-            
-                <!-- <div class="col-2"> -->
-                  <table class="table mb-0">
-                    <thead>
-                      
-                    </thead>
-                    
-                    <tr> 
-                      <label>Tên bài thi </label>
-                      <input type="text" class=" form-control form-control-success" >
-                    </tr>
-                
-                    <tr>
-                      <label>Điểm </label>
-                      <input type="text" class=" form-control form-control-success" >
-                    </tr>
-                  
-                    <tr>
-                        <label>Trạng thái </label>
-                       
-                          <select name="select" class="form-control form-control-success">
-                            <option value="opt3">Mở</option>
-                            <option value="opt4">Đóng</option>
-                          </select>
-  
-                    </tr>
-                   
-                    <tr>
-                      <label>Thời gian thi</label>
-                      <input type="text" class=" form-control form-control-success">
-  
-                    </tr>
-                    
-                    </tbody>
-  
-                  </table>
-                 <br>
-  
-                  <table>
-                   
-                    <div class="row">
-                      <div class="col-6">
-                        <button type="button" (click)='open()' class="btn btn-primary"> Them cau hoi</button>
-                      </div>
-                      <div class="col-6">
-                        <button type="button" (click)='openBank()' class="btn btn-primary "> Câu hỏi có sẵn</button>
-                      </div>
-                    </div>
-                    
-                  </table>
-                  
-               
-             
-  
-              <!-- <div class="row">
+
+          </table>
+
+
+
+
+          <!-- <div class="row">
                 <div *ngFor='let x of questions' class="col-sm-10 grid-margin stretch-card">
   
   
@@ -131,17 +133,17 @@
                 </div>
   
   
-              </div> -->  
-              <!-- <div class="row grid-margin stretch-card">
+              </div> -->
+          <!-- <div class="row grid-margin stretch-card">
                 <div class="col-4">
                     
                 </div>
   
               </div> -->
-  
-            <!-- </div> -->
-          </div>
+
+          <!-- </div> -->
         </div>
       </div>
     </div>
   </div>
+</div>
